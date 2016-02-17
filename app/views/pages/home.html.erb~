@@ -1,0 +1,8 @@
+<h1>Acceuil</h1>
+
+<p>
+  C'est la page d'acceuil pour l'application exemple du
+  <a href="http://railstutorial.org/">Tutoriel Ruby on Rails</a>.
+</p>
+
+<%= link_to "S'inscrire&nbsp;!", '#', :class => "signup_button round" %>
