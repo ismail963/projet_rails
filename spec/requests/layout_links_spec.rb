@@ -1,24 +1,27 @@
+require 'rails_helper'
 require 'spec_helper'
 
 describe "LayoutLinks" do
 
-  it "devrait trouver une page Accueil à '/'" do
+  it "devrait trouver une page Accueil at '/'" do
     get '/'
-    response.should have_selector('title', :content => "Accueil")
+    response.should be_success
   end
 
-  it "devrait trouver une page Contact at '/contact'" do
+  it "devrait trouver une page Contact a '/contact'" do
     get '/contact'
-    response.should have_selector('title', :content => "Contact")
+    response.should be_success
   end
 
-  it "should have an À Propos page at '/about'" do
+  it "should have an A Propos page a '/about'" do
     get '/about'
-    response.should have_selector('title', :content => "À Propos")
+    response.should be_success
   end
 
-  it "devrait trouver une page Iade à '/help'" do
-    get '/help'
-    response.should have_selector('title', :content => "Aide")
+  it "devrait trouver une page Iade a '/aide'" do
+    get '/aide'
+    response.should be_success
   end
+
+
 end

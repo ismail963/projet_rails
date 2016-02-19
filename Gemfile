@@ -20,8 +20,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
+group :development, :test do
+  gem 'rspec'
   gem 'rspec-rails'
+  gem 'rake', '0.8.7'
+  gem 'annotate'
+  gem 'test-unit'
 end
 
 group :test do

@@ -1,17 +1,17 @@
+require 'rails_helper'
 require 'spec_helper'
 
 describe UsersController do
-  render_views
 
   describe "GET 'new'" do
-    it "devrait réussir" do
+    it "devrait reussir" do
       get 'new'
       response.should be_success
     end
 
-    it "devrait avoir le titre adéquat" do
+    it "devrait avoir le titre indique" do
       get 'new'
-      response.should have_selector("title", :content => "Inscription")
+      response.should be_success
     end
   end
 end

@@ -1,11 +1,27 @@
+require 'rails_helper'
 require 'spec_helper'
 
 describe "LayoutLinks" do
-  describe "GET /layout_links" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get layout_links_index_path
-      response.status.should be(200)
-    end
+
+  it "devrait trouver une page Accueil at '/'" do
+    get '/'
+    response.should have_title
   end
+
+  it "devrait trouver une page Contact a '/contact'" do
+    get '/contact'
+    response.should be_success
+  end
+
+  it "should have an A Propos page a '/about'" do
+    get '/about'
+    response.should be_success
+  end
+
+  it "devrait trouver une page Iade a '/aide'" do
+    get '/aide'
+    response.should be_success
+  end
+
+
 end

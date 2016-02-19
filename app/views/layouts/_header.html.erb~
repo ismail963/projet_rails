@@ -2,7 +2,7 @@
   <%= image_tag("logo.png", :alt => "Logo de l'application", :class => "round") %>
   <nav class="round">
     <ul>
-      <li><%= link_to "Accueil",  '' %></li>
+      <li><%= link_to "Accueil",  root_path %></li>
       <li><%= link_to "Aide",  aide_path %></li>
       <li><%= link_to "Connexion", cnx_path %></li>
     </ul>
