@@ -5,7 +5,19 @@ class UsersController < ApplicationController
   end 
 
   def new
+	@user = User.new
 	@titre = "Inscription"
+  end
+
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      flash[:success] = "Bienvenue dans l'Application Projet!"
+      redirect_to @user
+    else
+      @titre = "Inscription"
+      render 'new'
+    end
   end
 
 end
