@@ -3,8 +3,16 @@
   <nav class="round">
     <ul>
       <li><%= link_to "Accueil",  root_path %></li>
+      <% if connecter? %>
+      <li><%= link_to "Profil", current_user %></li>
+      <% end %>
       <li><%= link_to "Aide",  aide_path %></li>
-      <li><%= link_to "Connexion", '' %></li>
+      <% if connecter? %>
+      <li><%= link_to "Déconnexion", deconnexion_path, :method => :delete %></li>
+      <% else %>
+       <li><%= link_to "Connexion", cnx_path %></li>
+      <% end %>
+
     </ul>
   </nav>
 </header>

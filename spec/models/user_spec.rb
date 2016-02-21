@@ -11,6 +11,7 @@
 #
 
 require 'rails_helper'
+require 'spec_helper'
 
 describe User do
 
@@ -128,5 +129,6 @@ describe User do
       end
     end
   end
+
 
 end

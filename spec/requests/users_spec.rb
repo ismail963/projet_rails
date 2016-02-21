@@ -17,8 +17,9 @@ RSpec.describe "Users", :type => :request do
 		fill_in "Mot de passe",     :with => ""
 		fill_in "Confirmation", :with => ""
 		click_button("id_submit")
-		response.should GET('users/new')
-		response.should have_selector("div#error_explanation")
+	  	get inscription_path
+         	assert_template 'users/new'
+		assert_select "div", id: "error_explanation"
         end.should_not change(User, :count)
       end
     end
@@ -33,12 +34,40 @@ RSpec.describe "Users", :type => :request do
           fill_in "Mot de passe", :with => "foobar"
           fill_in "Confirmation", :with => "foobar"
           click_button("id_submit")
-          response.should have_selector("div.flash.success", :text => "Bienvenue dans l'Application Projet!")
-          response.should render_template('users/show')
+	  get inscription_path
+          assert_template 'users/show'
+	  assert_select "div", class:"flash.success"
         end.should change(User, :count).by(1)
       end
     end
 
   end
  end
+
+ describe "identification/déconnexion" do
+
+    describe "l'échec" do
+      it "ne devrait pas identifier l'utilisateur" do
+        visit cnx_path
+        fill_in 'session[email]',    :with => ""
+        fill_in "Mot de passe", :with => ""
+        click_button "id_submit"
+	page.should have_content "invalide" 
+      end
+    end
+
+    describe "le succès" do
+      it "devrait identifier un utilisateur puis le déconnecter" do
+        user = Factory(:user)
+        visit cnx_path
+        fill_in 'session[email]',    :with => user.email
+        fill_in "Mot de passe", :with => user.password
+        click_button "id_submit" 
+        controller.should be_connecter
+        click_link "Déconnexion"
+        controller.should_not be_connecter
+      end
+    end
+  end
+
 end

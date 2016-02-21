@@ -23,17 +23,20 @@ describe UsersController do
 
     it "devrait avoir le bon titre" do
       get :show, :id => @user
-      response.should have_selector("title", :text => @user.nom)
+      assert_response :success
+      assert_select "title", "Projet | #{@user.nom}"
     end
 
     it "devrait inclure le nom de l'utilisateur" do
       get :show, :id => @user
-      response.should have_selector("h1", :text => @user.nom)
+      assert_response :success
+      assert_select "h1", @user.nom
     end
 
     it "devrait avoir une image de profil" do
       get :show, :id => @user
-      response.should have_selector("h1>img", :class => "gravatar")
+      assert_response :success
+      assert_select "h1>img", class:"gravatar" 
     end
 
   end
@@ -46,7 +49,8 @@ describe UsersController do
 
     it "devrait avoir le titre indique" do
       get 'new'
-      response.should be_success
+      assert_response :success
+      assert_select "title", "Projet | Inscription"
     end
   end
 
@@ -68,7 +72,8 @@ describe UsersController do
 
       it "devrait avoir le bon titre" do
         post :create, :user => @attr
-        response.should have_selector("title", :text => "Inscription")
+        assert_response :success
+        assert_select "title", "Projet | Inscription"
       end
 
       it "devrait rendre la page 'new'" do
@@ -88,6 +93,11 @@ describe UsersController do
         lambda do
           post :create, :user => @attr
         end.should change(User, :count).by(1)
+      end
+
+      it "devrait identifier l'utilisateur" do
+        post :create, :user => @attr
+        controller.should be_connecter
       end
 
       it "devrait rediriger vers la page d'affichage de l'utilisateur" do

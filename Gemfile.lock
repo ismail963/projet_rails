@@ -139,7 +139,7 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    webrat (0.7.3)
+    webrat (0.7.1)
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
       rack-test (>= 0.5.3)
@@ -164,4 +164,4 @@ DEPENDENCIES
   sqlite3
   test-unit
   uglifier (>= 1.0.3)
-  webrat
+  webrat (= 0.7.1)

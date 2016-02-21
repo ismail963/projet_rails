@@ -40,8 +40,8 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  def test_connexion(user)
-    controller.connexion(user)
+  def test_connecter(user)
+    controller.connecter?(user)
   end
 
 # The settings below are suggested to provide a good initial experience
