@@ -189,3 +189,18 @@ div.field, div.actions {
   list-style: square;
 }
 
+ul.users {
+  margin-top: 1em;
+}
+
+.users li {
+  list-style: none;
+}
+
+.button_to {
+  display: inline;
+}
+
+.button_to div {
+  display: inline;
+}

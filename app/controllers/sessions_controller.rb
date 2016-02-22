@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 	  else
 	    # Authentifie l'utilisateur et redirige vers la page d'affichage.
 	      connexion user
-              redirect_to user
+              rediriger_precedent_ou user
 	  end
   end
 

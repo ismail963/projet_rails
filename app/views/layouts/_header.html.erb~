@@ -4,7 +4,9 @@
     <ul>
       <li><%= link_to "Accueil",  root_path %></li>
       <% if connecter? %>
-      <li><%= link_to "Profil", current_user %></li>
+      	<li><%= link_to "Profil", current_user %></li>
+	<li><%= link_to "Edité le profile", edit_user_path(current_user) %></li>
+        <li><%= link_to "Utilisateurs", users_path %></li>
       <% end %>
       <li><%= link_to "Aide",  aide_path %></li>
       <% if connecter? %>
