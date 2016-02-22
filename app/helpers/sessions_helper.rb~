@@ -14,7 +14,8 @@ module SessionsHelper
   end
 
   def connecter?
-    !current_user.nil?
+    return true if !current_user.nil?
+    else return false
   end
 
   def deconnexion
@@ -31,9 +32,9 @@ module SessionsHelper
     redirect_to cnx_path, :notice => "Merci de vous identifier pour rejoindre cette page."
   end
 
-  def rediriger_vers_ou(default)
+  def rediriger_precedent_ou(default)
     redirect_to(session[:return_to] || default)
-    clear_vers
+    clear_precedent
   end
 
   private
@@ -50,7 +51,7 @@ module SessionsHelper
       session[:return_to] = request.fullpath
     end
 
-    def clear_vers
+    def clear_precedent
       session[:return_to] = nil
     end
 end

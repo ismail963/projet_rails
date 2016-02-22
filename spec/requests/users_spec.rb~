@@ -63,7 +63,9 @@ RSpec.describe "Users", :type => :request do
         fill_in 'session[email]',    :with => user.email
         fill_in "Mot de passe", :with => user.password
         click_button "id_submit" 
-        controller.should be_connecter?
+	get 'users' 
+        assert_template 'users/show'
+    	assert connecter?
         click_link "Déconnexion"
         controller.should_not be_connecter
       end

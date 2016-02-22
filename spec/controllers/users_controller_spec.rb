@@ -301,7 +301,7 @@ describe UsersController do
     describe "en tant qu'utilisateur non identifié" do
       it "devrait refuser l'accès" do
         delete :destroy, :id => @user
-        response.should redirect_to(cnx_path)
+        response.should redirect_to(root_path)
       end
     end
 
