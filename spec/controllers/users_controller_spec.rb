@@ -121,7 +121,7 @@ describe UsersController do
 
       before(:each) do
         @attr = { :nom => "", :email => "", :password => "",
-                  :password_confirmation => "" }
+                  :password_confirmation => "", :date_naissance =>"" }
       end
 
       it "ne devrait pas créer d'utilisateur" do
@@ -146,7 +146,7 @@ describe UsersController do
 
       before(:each) do
         @attr = { :nom => "New User", :email => "user@example.com",
-                  :password => "foobar", :password_confirmation => "foobar" }
+                  :password => "foobar", :password_confirmation => "foobar" , :date_naissance =>"1994-07-29" }
       end
 
       it "devrait créer un utilisateur" do
@@ -212,7 +212,7 @@ describe UsersController do
 
       before(:each) do
         @attr = { :email => "", :nom => "", :password => "",
-                  :password_confirmation => "" }
+                  :password_confirmation => "", :date_naissance => "" }
       end
 
       it "devrait retourner la page d'édition" do
@@ -232,7 +232,7 @@ describe UsersController do
 
       before(:each) do
         @attr = { :nom => "New Name", :email => "user@example.org",
-                  :password => "barbaz", :password_confirmation => "barbaz" }
+                  :password => "barbaz", :password_confirmation => "barbaz", :date_naissance =>"1994-07-29" }
       end
 
       it "devrait modifier les caractéristiques de l'utilisateur" do

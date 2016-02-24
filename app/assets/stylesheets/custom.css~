@@ -197,6 +197,10 @@ ul.users {
   list-style: none;
 }
 
-.button_to{
+.button_to {
+  display: inline;
+}
 
+.button_to div {
+  display: inline;
 }

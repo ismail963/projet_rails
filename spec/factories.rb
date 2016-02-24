@@ -5,6 +5,7 @@ Factory.define :user do |user|
   user.email                 "mhartl@example.com"
   user.password              "foobar"
   user.password_confirmation "foobar"
+  user.date_naissance "1994-07-29"
 end
 
 Factory.sequence :email do |n|

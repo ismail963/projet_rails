@@ -11,11 +11,15 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
+    <%= f.label :date_naissance, "Date de naissance" %><br />
+    <%= f.date_select :date_naissance, :order => [:day, :month, :year],  :use_month_names => ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre','Décembre'],  :start_year => 1950, :end_year => 2000 %>
+  </div>
+  <div class="field">
     <%= f.label :password, "Mot de passe" %><br />
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :password_confirmation, "Confirmation mot de passe", "Confirmation" %><br />
+    <%= f.label :password_confirmation, "Confirmation" %><br />
     <%= f.password_field :password_confirmation %>
   </div>
   <div class="actions">

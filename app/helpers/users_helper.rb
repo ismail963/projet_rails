@@ -6,4 +6,8 @@ module UsersHelper
                                             :gravatar => options)
   end
 
+  def age(user) 
+ 	now = Time.now.utc.to_date
+ 	now.year - user.date_naissance.year - (user.date_naissance.to_date.change(:year => now.year) > now ? 1 : 0)
+  end
 end

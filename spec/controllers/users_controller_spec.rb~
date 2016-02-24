@@ -121,7 +121,7 @@ describe UsersController do
 
       before(:each) do
         @attr = { :nom => "", :email => "", :password => "",
-                  :password_confirmation => "" }
+                  :password_confirmation => "", :date_naissance =>"" }
       end
 
       it "ne devrait pas créer d'utilisateur" do
@@ -146,7 +146,7 @@ describe UsersController do
 
       before(:each) do
         @attr = { :nom => "New User", :email => "user@example.com",
-                  :password => "foobar", :password_confirmation => "foobar" }
+                  :password => "foobar", :password_confirmation => "foobar" , :date_naissance =>"1994-07-29" }
       end
 
       it "devrait créer un utilisateur" do
@@ -301,7 +301,7 @@ describe UsersController do
     describe "en tant qu'utilisateur non identifié" do
       it "devrait refuser l'accès" do
         delete :destroy, :id => @user
-        response.should redirect_to(cnx_path)
+        response.should redirect_to(root_path)
       end
     end
 
