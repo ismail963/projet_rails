@@ -25,6 +25,23 @@ class UsersController < ApplicationController
 	@titre = "Inscription"
   end
 
+  def upload
+    uploaded_cv = params[:q]
+    @user = User.find(params['user_id'])
+    if !uploaded_cv.nil?
+	    filename=@user.nom+'_'+@user.id.to_s+'.pdf'
+	    File.open(Rails.root.join('public','cv',filename), 'wb') do |file|
+	      file.write(uploaded_cv.read)
+	    end
+	    @user.update_column(:cv, filename )
+            flash[:success] = "CV modifié"
+	    redirect_to @user
+    else
+	    flash[:error] = "Séléctionné un fichier !" 
+    	    redirect_to @user
+    end
+  end
+
   def create
     @user = User.new(params[:user])
     if @user.save
@@ -65,7 +82,7 @@ class UsersController < ApplicationController
     end
 
     def admin_user
-      redirect_to(cnx_path) unless current_user.try(:admin?)
+      redirect_to(root_path) unless current_user.try(:admin?)
     end
 
 end

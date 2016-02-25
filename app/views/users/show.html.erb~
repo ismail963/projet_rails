@@ -9,8 +9,35 @@
     <td class="sidebar round">
       <strong>Nom</strong> <%= @user.nom %><br />
       <strong>Date de naissance</strong>  <%= @user.date_naissance %><br />
-      <strong>Age</strong>  <%= age(@user.date_naissance) %><br />
+      <strong>Age</strong>  <%= age (@user) %><br />
       <strong>URL</strong>  <%= link_to user_path(@user), @user %>
     </td>
   </tr>
+  <tr>
+     <% if !has_cv?(@user) %>   
+	<td class="sidebar round">
+		<% if current_user?(@user) %>
+			  <%= form_tag({:action => 'upload', :user_id => @user.id}, :multipart => true) do %>
+			    <%= file_field_tag(:q, :accept => 'application/pdf')  %>
+			    <%= submit_tag "Upload" %>
+			  <% end %>
+		<% else %>
+			  <strong>N'a pas encore ajouter un cv </strong> 
+		<% end %>
+	</td>
+     <% else %>
+	<td>
+	     <strong> <%= link_to  "Consulter le CV ..." , root_path+'cv/'+@user.cv, { target: '_blank' }%>
+	     <% if current_user?(@user) %>
+		 	  <a href="#" onclick="document.getElementById('edit_cv').style.display='';"> <%= image_tag("edit.png", :alt => "Modifier votre CV?", :width => "25px") %></a>
+			  <%= form_tag({:action => 'upload', :user_id => @user.id}, :multipart => true, :id => "edit_cv") do %>
+			    <%= file_field_tag(:q, :accept => 'application/pdf')  %>
+			    <%= submit_tag "Upload" %>
+			  <% end %>
+			  <script> document.getElementById('edit_cv').style.display="none"; </script>
+	     <% end %>
+	   </strong> 
+	</td>
+     <% end %>
+  </tr> 
 </table>
