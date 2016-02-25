@@ -1,0 +1,6 @@
+class AddFilmsLivresToUser < ActiveRecord::Migration
+  def change
+    add_column :users, :films_vu_par_semaine, :int
+    add_column :users, :lire_plus_livres, :boolean
+  end
+end

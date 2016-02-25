@@ -19,7 +19,7 @@
 		<% if current_user?(@user) %>
 			  <%= form_tag({:action => 'upload', :user_id => @user.id}, :multipart => true) do %>
 			    <%= file_field_tag(:q, :accept => 'application/pdf')  %>
-			    <%= submit_tag "Upload" %>
+			    <%= submit_tag "Ok" %>
 			  <% end %>
 		<% else %>
 			  <strong>N'a pas encore ajouter un cv </strong> 
@@ -32,12 +32,40 @@
 		 	  <a href="#" onclick="document.getElementById('edit_cv').style.display='';"> <%= image_tag("edit.png", :alt => "Modifier votre CV?", :title => "Modifier votre CV?", :width => "25px") %></a>
 			  <%= form_tag({:action => 'upload', :user_id => @user.id}, :multipart => true, :id => "edit_cv") do %>
 			    <%= file_field_tag(:q, :accept => 'application/pdf')  %>
-			    <%= submit_tag "Upload" %>
+			    <%= submit_tag "Ok" %>
 			  <% end %>
 			  <script> document.getElementById('edit_cv').style.display="none"; </script>
 	     <% end %>
 	   </strong> 
 	</td>
+
+	<% if current_user?(@user) %>
+		<td>
+			<fieldset>
+				<legend>Information complétive </legend>
+				<% if vide_nbr_films?(@user) %>
+					<%= form_tag({:action => 'update_nbr_films', :user_id => @user.id}, :id => "edit_nbrF") do %>
+					<%= label_tag(:nbr, "Nombre moyen de films vus par semaine ?")  %>
+					<%= number_field_tag(:nbr, 0, :min => 0)  %>
+					<%= submit_tag "Ok" %>
+					<% end %>
+				<% else %>
+					 <strong>Films vu par semaine : <%= @user.films_vu_par_semaine %></strong>	
+				<% end %> <br/>
+
+				<% if vide_lire_livres?(@user) %>
+					<%= form_tag({:action => 'update_read_more_books', :user_id => @user.id}, :id => "edit_rmb") do %>
+					<%= label_tag("J'aimerais lire plus de livres ?")  %> <br/>
+					<%= label_tag("Oui")  %>
+					<%= radio_button_tag(:read_more, 1) %>
+					<%= label_tag("Non")  %>
+					<%= radio_button_tag(:read_more, 0) %><br/>
+					<%= submit_tag "Ok" %>
+					<% end %>			
+				<% end %>
+			</fieldset>	
+		</td>
+	<% end %>
      <% end %>
   </tr> 
 </table>

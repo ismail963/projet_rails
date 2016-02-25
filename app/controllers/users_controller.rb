@@ -42,6 +42,37 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_nbr_films
+	nbr=params[:nbr]
+	@user = User.find(params['user_id'])
+	if nbr =~ /\A[-+]?[0-9]*\.?[0-9]+\Z/
+	    @user.update_column(:films_vu_par_semaine, nbr )
+            flash[:success] = "Nombre de films vu par semaine est "+nbr.to_s
+	    redirect_to @user	
+	else 
+	    flash[:error] = "Le Numobre doit être un entier" 
+    	    redirect_to @user
+	end 
+  end
+
+  def update_read_more_books
+
+	read_more=params[:read_more]
+	@user = User.find(params['user_id'])
+        if read_more == "1"
+		@user.update_column(:lire_plus_livres, true)
+		flash[:success] ="good"
+		redirect_to @user
+	elsif read_more == "0"
+		@user.update_column(:lire_plus_livres, true)
+		flash[:success] ="bad"
+		redirect_to @user
+	else 
+	    flash[:error] = "Une erreur c'est produite !" 
+    	    redirect_to @user
+	end
+  end
+
   def create
     @user = User.new(params[:user])
     if @user.save

@@ -14,4 +14,25 @@ module UsersHelper
   def has_cv?(user)
 	!user.cv.nil?
   end
+
+  def vide_nbr_films?(user)
+	user.films_vu_par_semaine.nil?
+  end
+
+  def vide_lire_livres?(user)
+	user.lire_plus_livres.nil?
+  end
+ 
+  def porcetage_users_read_books
+	#User.where(:lire_plus_livres => true).sum(:pric)
+	nbr_users=Float(User.count)
+	oui=Float(User.count(:conditions => { :lire_plus_livres => true }))
+	non=Float(User.count(:conditions => { :lire_plus_livres => false }))
+	non_spe=Float(User.count(:conditions => { :lire_plus_livres => nil }))
+
+	oui=Float(oui/nbr_users*100)
+	non=non/nbr_users*100
+	non_spe=non_spe/nbr_users*100
+	return oui.to_s+";"+non.to_s+";"+non_spe.to_s
+  end
 end

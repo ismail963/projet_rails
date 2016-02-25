@@ -3,7 +3,8 @@ SampleApp::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
 
   resources :users do
-       collection { post :upload }       
+       collection { post :upload } 
+       collection { post :update_nbr_films }       
   end
   root :to => 'pages#home'
   match '/contact', :to => 'pages#contact'
@@ -12,7 +13,6 @@ SampleApp::Application.routes.draw do
   match '/inscription',    :to => 'users#new'
   match '/cnx', :to => 'sessions#new'
   match '/deconnexion', :to => 'sessions#destroy'
-  match '/cv', to => 'public/cv'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

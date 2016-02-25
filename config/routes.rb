@@ -3,7 +3,9 @@ SampleApp::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
 
   resources :users do
-       collection { post :upload }       
+       collection { post :upload } 
+       collection { post :update_nbr_films }     
+       collection { post :update_read_more_books  }
   end
   root :to => 'pages#home'
   match '/contact', :to => 'pages#contact'
