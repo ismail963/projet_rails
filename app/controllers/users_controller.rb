@@ -7,8 +7,25 @@ class UsersController < ApplicationController
   def index
     @titre = "Tous les utilisateurs"
     @users = User.paginate(:page => params[:page])
+
+   
+
+
   end
  
+  def tel
+    @titre = "Tous les utilisateurs"
+    @users = User.all
+        respond_to do |format|
+	  format.pdf do
+	    render :pdf    => "liste_utilisateurs",
+	      :disposition => "inline",
+	      :template    => "users/tel.xhtml.erb",
+	      :layout      => "pdf.xhtml"
+	  end
+	end
+  end 
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
@@ -117,3 +134,5 @@ class UsersController < ApplicationController
     end
 
 end
+
+

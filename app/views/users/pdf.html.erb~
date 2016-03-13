@@ -1,0 +1,13 @@
+<center><h1>La liste des utilisateurs</h1></center>
+
+<table>
+  <% @users.each do |user| %>
+    <tr>
+      <td> 
+	<%= gravatar_for user, :size => 30 %>
+      	<%= link_to user.nom, user %>
+      </td> 
+    </tr>
+
+  <% end %>
+</table>

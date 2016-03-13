@@ -1,0 +1,24 @@
+<center>
+
+	<h1>La liste des utilisateurs</h1>
+
+	<table border='1'>
+	  <tr>
+		<th>Nom</th>
+		<th>Date de naissance </th>
+	  </tr>
+	  <% @users.each do |user| %>
+	    <tr>
+	      <td> 
+		<%= gravatar_for user, :size => 30 %>
+	      	<%= link_to user.nom, user %>
+	      </td>
+	      <td>
+		<%= user.date_naissance %>
+	      </td> 
+	    </tr>
+	  <% end %>
+	</table>
+        <p><strong>Nombre total d'utilisateur : <i><%= @users.count %></i> </strong></p>
+
+</center>

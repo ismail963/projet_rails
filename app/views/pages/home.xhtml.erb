@@ -1,0 +1,27 @@
+<% if !connecter? %>
+	<h1>Acceuil</h1>
+	<p>
+	  C'est la page d'acceuil pour l'application exemple du
+	  <a href="http://railstutorial.org/">Tutoriel Ruby on Rails</a>.
+	</p>
+
+	<%= link_to "S'inscrire !", inscription_path, :class => "signup_button round" %>
+
+<% else %>
+	<h1>Statistics</h1>
+	<p>
+		<% stat=porcetage_users_read_books.split(";")  %>
+		<strong>Lire des livres : </strong> <br/>
+		Il a <%= number_with_precision(stat[0],:precision => 2) %>% qui aimeront lire plus de livre, par contre il a <%= number_with_precision(stat[1],:precision => 2) %>% qui naimeront pas lire plus de livre, et <%= number_with_precision(stat[2],:precision => 2) %>% n'ont pas encore précisé.
+	</p>
+
+	<p>
+		<strong>Box-plot des nombres de films vus par semaine : </strong>
+		<center>
+		  <%= image_tag("films.svg", :alt => "Statistique (nombre de films vue par semaine)", :class => "round", :height =>"500px") %>
+		</center>
+	</p> 
+<% end %>
+
+	
+

@@ -1,5 +1,5 @@
 <header>
-  <%= image_tag("logo.png", :alt => "Logo de l'application", :class => "round") %>
+  <%= image_tag("rails.png", :alt => "Logo de l'application", :class => "round") %>
   <nav class="round">
     <ul>
       <li><%= link_to "Accueil",  root_path %></li>

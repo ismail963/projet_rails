@@ -7,8 +7,25 @@ class UsersController < ApplicationController
   def index
     @titre = "Tous les utilisateurs"
     @users = User.paginate(:page => params[:page])
+
+   
+
+
   end
  
+  def tel
+    @titre = "Tous les utilisateurs"
+    @users = User.all
+        respond_to do |format|
+	  format.pdf do
+	    render :pdf    => "liste_utilisateurs",
+	      :disposition => "inline",
+	      :template    => "users/tel.html.erb",
+	      :layout      => "pdf.html"
+	  end
+	end
+  end 
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
@@ -60,9 +77,11 @@ class UsersController < ApplicationController
 	read_more=params[:read_more]
 	@user = User.find(params['user_id'])
         if read_more == "1"
+		@user.update_column(:lire_plus_livres, true)
 		flash[:success] ="good"
 		redirect_to @user
 	elsif read_more == "0"
+		@user.update_column(:lire_plus_livres, true)
 		flash[:success] ="bad"
 		redirect_to @user
 	else 
@@ -115,3 +134,5 @@ class UsersController < ApplicationController
     end
 
 end
+
+

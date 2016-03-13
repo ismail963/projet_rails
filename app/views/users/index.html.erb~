@@ -1,12 +1,13 @@
 <h1>Tous les utilisateurs</h1>
 
+<%= link_to "Télécharger", "tel.pdf",  target: "_blank" %>
 <ul class="users">
   <% @users.each do |user| %>
     <li>
       <%= gravatar_for user, :size => 30 %>
       <%= link_to user.nom, user %>
       <% if current_user.admin? %>
-	  | <%= button_to "supprimer", { action: "destroy", id: user.id },  method: :delete, style: {display: "inline"} , data: { confirm: "Are you sure?" } %>
+	  | <%= button_to "supprimer", { action: "destroy", id: user.id },  method: :delete , data: { confirm: "Are you sure?" } %>
       <% end %>
     </li>
 

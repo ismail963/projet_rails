@@ -8,3 +8,24 @@
     </ul>
   </nav>
 </footer>
+
+<%= javascript_include_tag "jquery-ui/external/jquery/jquery.js" %>
+<%= javascript_include_tag "jquery-ui/jquery-ui.js" %>
+
+<script>
+
+    dialog = $( "#dialog-form" ).dialog({
+      autoOpen: sessionStorage.getItem("afficher_dialog") ,
+      height: 150,
+      width: 350,
+      modal: true,
+      buttons: {
+        "Ok": function() { document.forms[ "read_more_form" ].submit(); },
+        "J'ai déjà lu suffisamment": function() {
+          dialog.dialog( "close" );
+        }
+      }
+    });
+</script>
+
+   
