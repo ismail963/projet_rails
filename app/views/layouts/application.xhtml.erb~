@@ -6,19 +6,36 @@
     <%= csrf_meta_tag %>
     <%= render 'layouts/stylesheets' %>
     <%= stylesheet_link_tag "jquery-ui/jquery-ui.css" %>
-    <%= javascript_include_tag "lireLivres.js" %>
   </head>
   <body>
-    <div class="container">
       <%= render 'layouts/header' %>
-      <section class="round">
         <% flash.each do |key, value| %>
           <div class="flash <%= key %>"><%= value %></div>
         <% end %>
-        <%= yield %>
-      </section>
+  		<div class="page">
+		  <div class="primary-col">
+		    <div class="generic">
+		
+		    </div>
+		    <div class="block float-left mar-top30">
+		      <div class=" panel">
+		        <div class="title">
+		          <h1>Morbi sed felis digni</h1>
+		        </div>
+		        <div class="content">
+						<%= yield %>
+		        </div>
+		      </div>
+		    </div>
+		  </div>  
+		</div>    
+
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
-    </div>
+
   </body>
 </html>
+
+
+
+

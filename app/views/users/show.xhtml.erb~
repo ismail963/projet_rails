@@ -1,78 +1,79 @@
-<script> var user_name= "<% @user.id %>"; alert("<%= @user.nom %>");  </script>
-<table class="profile" summary="Information profil">
-  <tr>
-    <td class="main">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.nom %>
-      </h1>
-    </td>
-    <td class="sidebar round">
-      <strong>Nom</strong> <%= @user.nom %><br />
-      <strong>Date de naissance</strong>  <%= @user.date_naissance %><br />
-      <strong>Age</strong>  <%= age (@user) %><br />
-      <strong>URL</strong>  <%= link_to user_path(@user), @user %>
-    </td>
-  </tr>
-  <tr>
-     <% if !has_cv?(@user) %>   
-	<td class="sidebar round">
-		<% if current_user?(@user) %>
-			  <%= form_tag({:action => 'upload', :user_id => @user.id}, :multipart => true) do %>
-			    <%= file_field_tag(:q, :accept => 'application/pdf')  %>
-			    <%= submit_tag "Ok" %>
-			  <% end %>
-		<% else %>
-			  <strong>N'a pas encore ajouter un cv </strong> 
-		<% end %>
-	</td>
-     <% else %>
-	<td>
-	     <strong> <%= link_to  "Consulter le CV ..." , root_path+'cv/'+@user.cv, { target: '_blank' }%>
-	     <% if current_user?(@user) %>
-		 	  <a href="#" onclick="document.getElementById('edit_cv').style.display='';"> <%= image_tag("edit.png", :alt => "Modifier votre CV?", :title => "Modifier votre CV?", :width => "25px") %></a>
-			  <%= form_tag({:action => 'upload', :user_id => @user.id}, :multipart => true, :id => "edit_cv") do %>
-			    <%= file_field_tag(:q, :accept => 'application/pdf')  %>
-			    <%= submit_tag "Ok" %>
-			  <% end %>
-			  <script> document.getElementById('edit_cv').style.display="none"; </script>
-	     <% end %>
-	   </strong> 
-	</td>
+<div class="panel">
+	<div class="content" style="min-height:250px">
+		<script type="text/javascript"> var user_name= "<%= @user.id %>";   </script>
+		<div class="content mar-top30"> 
+			 <%= gravatar_for @user  %>
+          		<h1> <%= @user.nom %></h1>
+			<p>      
+				<strong>Nom</strong> <%= @user.nom %><br />
+				<strong>Date de naissance</strong>  <%= @user.date_naissance %><br />
+				<strong>Age</strong>  <%= age (@user) %><br />
+				<strong>URL</strong>  <%= link_to user_path(@user), @user %>
+		        </p>
+        	</div>
+		<div class="content mar-top30"> 
+		    <% if !has_cv?(@user) %>   
+				<% if current_user?(@user) %>
+					  <%= form_tag({:action => 'upload', :user_id => @user.id}, :multipart => true) do %>
+					    <%= file_field_tag(:q, :accept => 'application/pdf')  %>
+					    <%= submit_tag "Ok" %>
+					  <% end %>
+				<% else %>
+					  <strong>N'a pas encore ajouter un cv </strong> 
+				<% end %>
+		     <% else %>
+			      
+				 
+				 <a href="#" onclick="javascript: window.open('<%= root_path+'cv/'+@user.cv %>');"><strong>Consulter le CV ...</strong></a>
+			     <% if current_user?(@user) %>
+				 	  <a href="#" onclick="document.getElementById('edit_cv').style.display='';"> 
+						<%= image_tag("edit.png", :alt => "Modifier votre CV?", :title => "Modifier votre CV?", :width => "25") %>
+					  </a>
+					  <%= form_tag({:action => 'upload', :user_id => @user.id}, :multipart => true, :id => "edit_cv") do %>
+					   <div class="contact-form mar-top">
+					    <%= file_field_tag(:q, :accept => 'application/pdf')  %>
+					    <%= submit_tag "Ok" %>
+					   </div>
+					  <% end %>
+					  <script type="text/javascript"> document.getElementById('edit_cv').style.display="none"; </script>
+			     <% end %>
+				
+			    
 
+		     <% end %> 
+
+	     </div>
+ 
 	<% if current_user?(@user) %>
-		<td>
-			<fieldset>
-				<legend>Information complétive </legend>
+		<div id="nbr_films" style="margin-left:500px; margin-top:-160px;">
+			<div class="title"><h1>Information complétive</h1></div>
 				<% if vide_nbr_films?(@user) %>
 					<%= form_tag({:action => 'update_nbr_films', :user_id => @user.id}, :id => "edit_nbrF") do %>
-					<%= label_tag(:nbr, "Nombre moyen de films vus par semaine ?")  %>
-					<%= number_field_tag(:nbr, 0, :min => 0)  %>
-					<%= submit_tag "Ok" %>
+						 <div class="contact-form mar-top">
+							<%= label_tag(:nbr, "Nombre moyen de films vus par semaine ?")  %>
+							<%= text_field_tag(:nbr,"0", :class => "input_text")  %>
+							<%= submit_tag "Ok", :class => "button" %>
+						</div>
 					<% end %>
 				<% else %>
 					 <strong>Films vu par semaine : <%= @user.films_vu_par_semaine %></strong>	
 				<% end %> <br/>
 
-				<div id="dialog-form" title="Aimer-vous lire plus de livres ?">
-					<%= form_tag({:action => 'update_read_more_books', :user_id => @user.id}, :id => "edit_rmb", :name => "read_more_form") do %>
-						<center>
-							<%= label_tag("J'aimerais lire plus de livres ?")  %> <br/>
-							<%= label_tag("Oui")  %>
+				<div id="dialog-form" title="Aimer-vous lire plus de livres ?" style="text-align:center;">
+					<%= form_tag({:action => 'update_read_more_books', :user_id => @user.id}, :id => "edit_rmb") do %>
+						<div >
+							<label>J'aimerais lire plus de livres</label> <br/>
+							<%= label_tag("read_more_1", "Oui")  %>
 							<%= radio_button_tag(:read_more, 1) %>
-							<%= label_tag("Non")  %>
-							<%= radio_button_tag(:read_more, 0) %><br/>
-						</center>
-						<!-- <%= submit_tag "Ok" %> -->
+							<%= label_tag("read_more_0","Non")  %>
+							<%= radio_button_tag(:read_more, 0) %>
+						</div>
 					<% end %>
 				</div>			
-				
-			</fieldset>	
-		</td>
+		</div>	
 	<% end %>
-     <% end %>
-  </tr> 
-</table>
+    </div>
+</div>
 <%= javascript_include_tag "jquery-ui/external/jquery/jquery.js" %>
 <%= javascript_include_tag "jquery-ui/jquery-ui.js" %>
 <%= javascript_include_tag "lireLivres.js" %>

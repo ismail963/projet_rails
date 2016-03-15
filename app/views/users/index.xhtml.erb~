@@ -1,0 +1,22 @@
+<div class="panel">
+	<div class="content" style="min-height:500px">
+		<div class="title"><h1>Tous les utilisateurs</h1></div>
+		<div style="text-align:right">
+			<h1> <strong> <a href="javascript: window.open('tel.pdf');">Télécharger la liste</a> </strong></h1>
+		</div>
+		<table>
+		  <% @users.each do |user| %>
+		    <tr><td>
+		      <%= gravatar_for user, :size => 20 %>
+		      <%= link_to user.nom, user %>
+		      <% if current_user.admin? %>
+			  | <%= button_to "supprimer", { action: "destroy", id: user.id },  method: :delete , data: { confirm: "Are you sure?" } %>
+		      <% end %>
+		    </td></tr>
+
+		  <% end %>
+		</table>
+
+		<%= will_paginate %>
+	</div>
+</div>

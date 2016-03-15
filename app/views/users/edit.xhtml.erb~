@@ -1,0 +1,27 @@
+<div class="panel">
+	<div class="content">
+		<div class="title"><h1>Edition du profil</h1></div>
+		<%= form_for(@user) do |f| %>
+		  <div class="contact-form mar-top">
+		    <%= render 'shared/error_messages', :object => f.object %>
+		    <%= f.label :nom, "Nom" %>
+		    <%= f.text_field :nom ,:class => "input_text"%>
+		    <%= f.label :email, "Email" %>
+		    <%= f.text_field :email , :class => "input_text"%>
+		    <%= f.label "Date de naissance" %>
+		    <%= f.date_select :date_naissance, :order => [:day, :month, :year],  :use_month_names => ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre','Décembre'],  :start_year => 1950, :end_year => 2010 %>
+		    <%= f.label :password, "Mot de passe" %>
+		    <%= f.password_field :password ,:class => "input_text" %>
+		    <%= f.label :password_confirmation, "Confirmation" %>
+		    <%= f.password_field :password_confirmation, :class => "input_text" %><br/><br/>
+		    <%= f.submit "Envoyer" %>
+		  </div>
+		<% end %>
+
+		<div>
+		  <%= gravatar_for @user %>
+		  <a href="http://gravatar.com/emails">changer</a>
+		</div>		
+	</div>
+
+</div>

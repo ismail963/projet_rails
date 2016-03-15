@@ -6,6 +6,7 @@ Factory.define :user do |user|
   user.password              "foobar"
   user.password_confirmation "foobar"
   user.date_naissance "1994-07-29"
+  user.films_vu_par_semaine "180"
 end
 
 Factory.sequence :email do |n|

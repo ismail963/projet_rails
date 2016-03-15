@@ -1,49 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="fr">
-  <head>
-    <title><%= titre %></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <%= csrf_meta_tag %>
-    <%= render 'layouts/stylesheets' %>
-    <%= stylesheet_link_tag "jquery-ui/jquery-ui.css" %>
-  </head>
-  <body>
-    <div class="container">
-      <%= render 'layouts/header' %>
-      <section class="round">
-        <% flash.each do |key, value| %>
-          <div class="flash <%= key %>"><%= value %></div>
-        <% end %>
-<% if !connecter? %>
-	<h1>Acceuil</h1>
-	<p>
-	  C'est la page d'acceuil pour l'application exemple du
-	  <a href="http://railstutorial.org/">Tutoriel Ruby on Rails</a>.
-	</p>
+<div class="panel">
+        
+	<% if !connecter? %>
+		<div class="title"><h1>Acceuil</h1></div>
+		<div class="content">
+			<p style="align-text:center">
+			  Bienvenu sur l'application Projet.
+			</p>
 
-	<%= link_to "S'inscrire !", inscription_path, :class => "signup_button round" %>
+			<%= link_to "S'inscrire !", inscription_path, :class => "signup_button round" %>
+		</div>
+	<% else %>
+		<div class="title"><h1><strong>Statistics</strong></h1></div>
+		<div class="content">
+			<h2><strong>Lire des livres : </strong></h2>
+			<p style="font-size:14pt;"> 
+				<% stat=porcetage_users_read_books.split(";")  %>
+				Il a <%= number_with_precision(stat[0],:precision => 2) %>% qui aimeront lire plus de livre, par contre il a <%= number_with_precision(stat[1],:precision => 2) %>% qui naimeront pas lire plus de livre, et <%= number_with_precision(stat[2],:precision => 2) %>% n'ont pas encore précisé.
+			</p>
 
-<% else %>
-	<h1>Statistics</h1>
-	<p>
-		<% stat=porcetage_users_read_books.split(";")  %>
-		<strong>Lire des livres : </strong> <br/>
-		Il a <%= number_with_precision(stat[0],:precision => 2) %>% qui aimeront lire plus de livre, par contre il a <%= number_with_precision(stat[1],:precision => 2) %>% qui naimeront pas lire plus de livre, et <%= number_with_precision(stat[2],:precision => 2) %>% n'ont pas encore précisé.
-	</p>
+			<h2><strong>Box-plot des nombres de films vus par semaine :</strong></h2>
+			<p style="text-align: center;"><br/>
+				<%= image_tag("films.svg", :alt => "Statistique (nombre de films vue par semaine)", :class => "round", :height =>"500") %>
+			</p>
+		</div> 
+	<% end %>
 
-	<p>
-		<strong>Box-plot des nombres de films vus par semaine : </strong>
-		<center>
-		  <%= image_tag("films.svg", :alt => "Statistique (nombre de films vue par semaine)", :class => "round", :height =>"500px") %>
-		</center>
-	</p> 
-<% end %>
+</div>	
 
-      </section>
-      <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
-    </div>
-  </body>
-</html>	
 

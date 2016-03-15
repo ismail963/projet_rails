@@ -2,7 +2,8 @@ module UsersHelper
 
   def gravatar_for(user, options = { :size => 50 })
     gravatar_image_tag(user.email.downcase, :alt => user.nom,
-                                            :class => 'gravatar',
+					    :height => "100",
+                                            :class => 'float-left mar-right30',
                                             :gravatar => options)
   end
 
@@ -16,7 +17,7 @@ module UsersHelper
   end
 
   def vide_nbr_films?(user)
-	user.films_vu_par_semaine.nil?
+	!user.films_vu_par_semaine.nil?
   end
 
   def vide_lire_livres?(user)
@@ -31,8 +32,8 @@ module UsersHelper
 	non_spe=Float(User.count(:conditions => { :lire_plus_livres => nil }))
 
 	oui=Float(oui/nbr_users*100)
-	#non=non/nbr_users*100
-	#non_spe=non_spe/nbr_users*100
-	return oui.to_s+";"+non.to_s+";"+non_spe.to_s+";"+nbr_users.to_s
+	non=non/nbr_users*100
+	non_spe=non_spe/nbr_users*100
+	return oui.to_s+";"+non.to_s+";"+non_spe.to_s
   end
 end

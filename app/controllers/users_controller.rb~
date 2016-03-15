@@ -20,8 +20,8 @@ class UsersController < ApplicationController
 	  format.pdf do
 	    render :pdf    => "liste_utilisateurs",
 	      :disposition => "inline",
-	      :template    => "users/tel.html.erb",
-	      :layout      => "pdf.html"
+	      :template    => "users/tel.xhtml.erb",
+	      :layout      => "pdf.xhtml"
 	  end
 	end
   end 

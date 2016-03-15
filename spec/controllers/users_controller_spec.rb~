@@ -44,7 +44,7 @@ describe UsersController do
         get :index
         @users[0..2].each do |user|
           assert_response :success
-       	  assert_select "li", user.nom
+       	  assert_select "td", user.nom
           #response.should have_selector("li", :content => user.nom)
         end
       end
@@ -96,9 +96,20 @@ describe UsersController do
     it "devrait avoir une image de profil" do
       get :show, :id => @user
       assert_response :success
-      assert_select "h1>img", class:"gravatar" 
+      assert_select "div>img", class:"gravatar" 
     end
 
+    it "devrait afficher la date de naissance" do
+      get :show, :id => @user
+      assert_response :success
+      assert_select "div>div>p", @user.date_naissance.strftime("%Y-%m-%d")				
+    end
+
+    it "devrait afficher le nombre de film vus par semaine " do
+      get :show, :id => @user
+      assert_response :success
+      assert_select ".nbr_films", "Films vu par semaine : #{@user.films_vu_par_semaine}"				
+    end
   end
 
   describe "GET 'new'" do
@@ -212,7 +223,7 @@ describe UsersController do
 
       before(:each) do
         @attr = { :email => "", :nom => "", :password => "",
-                  :password_confirmation => "" }
+                  :password_confirmation => "", :date_naissance => "" }
       end
 
       it "devrait retourner la page d'édition" do
@@ -232,7 +243,7 @@ describe UsersController do
 
       before(:each) do
         @attr = { :nom => "New Name", :email => "user@example.org",
-                  :password => "barbaz", :password_confirmation => "barbaz" }
+                  :password => "barbaz", :password_confirmation => "barbaz", :date_naissance =>"1994-07-29" }
       end
 
       it "devrait modifier les caractéristiques de l'utilisateur" do

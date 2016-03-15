@@ -12,15 +12,15 @@
   <rect x="600" y="70" width="200" height="800" fill="white" stroke="black" stroke-width="5"/>
 
   <g fill="none" stroke="black" stroke-width="5">
-    <line x1="550" y1="435.0" x2="850" y2="435.0"/>
+    <line x1="550" y1="313.3333333333333" x2="850" y2="313.3333333333333"/>
   </g>
 
   <text x="855" y="70" font-size="25pt">
 	7
   </text>
 
-  <text x="855" y="435.0" font-size="25pt">
-	43.5
+  <text x="855" y="313.3333333333333" font-size="25pt">
+	31.33333333333333
   </text>
 
   <text x="855" y="870" font-size="25pt">

@@ -1,17 +1,19 @@
-<h1>Identification</h1>
+<div class="panel">
+	<div class="content">
+		<div class="title"><h1>Identification</h1></div>
+			<%= form_for(:session, :url => sessions_path) do |f| %>
+			  <div class="contact-form mar-top">
+			    <%= f.label :email, "Email" %>
+			    <%= f.text_field :email %>
+			    <%= f.label :password, "Mot de passe" %>
+			    <%= f.password_field :password %><br/><br/>
+			    <%= f.submit "S'identifier", :id => "id_submit" %>
+			    <p>Pas encore inscrit ? <%= link_to "S'inscrire !", inscription_path %></p>
+			  </div>
+			<% end %>
+		     
 
-<%= form_for(:session, :url => sessions_path) do |f| %>
-  <div class="field">
-    <%= f.label :email, "Email" %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password, "Mot de passe" %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="actions">
-    <%= f.submit "S'identifier", :id => "id_submit" %>
-  </div>
-<% end %>
+		     
 
-<p>Pas encore inscrit ? <%= link_to "S'inscrire !", inscription_path %></p>
+	</div>
+</div>

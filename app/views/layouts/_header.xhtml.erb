@@ -1,20 +1,34 @@
-<header>
+<!--
   <%= image_tag("logo.png", :alt => "Logo de l'application", :class => "round") %>
-  <nav class="round">
-    <ul>
-      <li><%= link_to "Accueil",  root_path %></li>
-      <% if connecter? %>
-      	<li><%= link_to "Profil", current_user %></li>
-	<li><%= link_to "Edité le profile", edit_user_path(current_user) %></li>
-        <li><%= link_to "Utilisateurs", users_path %></li>
-      <% end %>
-      <li><%= link_to "Aide",  aide_path %></li>
-      <% if connecter? %>
-      <li><%= link_to "Déconnexion", deconnexion_path, :method => :delete %></li>
-      <% else %>
-       <li><%= link_to "Connexion", cnx_path %></li>
-      <% end %>
 
-    </ul>
-  </nav>
-</header>
+-->
+	<div class="menu-wrap">
+		  <div class="menu">
+		    <ul>
+			      <li><%= link_to "Accueil",  root_path %></li>
+			      <% if connecter? %>
+			      	<li><%= link_to "Profil", current_user %></li>
+				<li><%= link_to "Edité le profile", edit_user_path(current_user) %></li>
+				<li><%= link_to "Utilisateurs", users_path %></li>
+			      <% end %>
+			      <li><%= link_to "Aide",  aide_path %></li>
+			      <% if connecter? %>
+			      <li><%= link_to "Déconnexion", deconnexion_path %></li>
+			      <% else %>
+			       <li><%= link_to "Connexion", cnx_path %></li>
+			      <% end %>
+		    </ul>
+		  </div>
+		</div>
+		<div class="clearing"></div>
+		<div class="header">
+		  <div class="logo">
+		    <h1>Projet <span>Rails</span></h1>
+		  </div>
+		</div>
+		<% if titre =="Projet" %>
+		<div class="banner">
+		  <h1>Ruby on Rails </h1>
+		  <h2>ELFAQIR Ismail</h2>
+		</div>
+		<% end %>

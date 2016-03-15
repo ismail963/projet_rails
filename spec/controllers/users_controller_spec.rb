@@ -44,7 +44,7 @@ describe UsersController do
         get :index
         @users[0..2].each do |user|
           assert_response :success
-       	  assert_select "li", user.nom
+       	  assert_select "td", user.nom
           #response.should have_selector("li", :content => user.nom)
         end
       end
@@ -96,7 +96,7 @@ describe UsersController do
     it "devrait avoir une image de profil" do
       get :show, :id => @user
       assert_response :success
-      assert_select "h1>img", class:"gravatar" 
+      assert_select "div>img", class:"gravatar" 
     end
 
   end
