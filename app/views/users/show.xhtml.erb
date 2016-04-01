@@ -45,7 +45,7 @@
 	     </div>
  
 	<% if current_user?(@user) %>
-		<div class="nbr_films" style="margin-left:500px; margin-top:-160px;">
+		<div style="margin-left:500px; margin-top:-160px;">
 			<div class="title"><h1>Information complétive</h1></div>
 				<% if vide_nbr_films?(@user) %>
 					<%= form_tag({:action => 'update_nbr_films', :user_id => @user.id}, :id => "edit_nbrF") do %>
@@ -56,7 +56,7 @@
 						</div>
 					<% end %>
 				<% else %>
-					 <strong>Films vu par semaine : <%= @user.films_vu_par_semaine %></strong>	
+					 <label id="nbr_films"> <strong>Films vu par semaine : <%= @user.films_vu_par_semaine %></strong></label>	
 				<% end %> <br/>
 
 				<div id="dialog-form" title="Aimer-vous lire plus de livres ?" style="text-align:center;">

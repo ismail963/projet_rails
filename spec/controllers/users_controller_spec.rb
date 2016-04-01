@@ -99,6 +99,7 @@ describe UsersController do
       assert_select "div>img", class:"gravatar" 
     end
 
+
   end
 
   describe "GET 'new'" do

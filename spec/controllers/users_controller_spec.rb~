@@ -99,17 +99,14 @@ describe UsersController do
       assert_select "div>img", class:"gravatar" 
     end
 
-    it "devrait afficher la date de naissance" do
+    it "devrait avoir un fichier cv" do
       get :show, :id => @user
       assert_response :success
-      assert_select "div>div>p", @user.date_naissance.strftime("%Y-%m-%d")				
+      
+	 response.should File.exists? "bbbbbbbbbbbbbbbbbbbb"
+     
     end
 
-    it "devrait afficher le nombre de film vus par semaine " do
-      get :show, :id => @user
-      assert_response :success
-      assert_select ".nbr_films", "Films vu par semaine : #{@user.films_vu_par_semaine}"				
-    end
   end
 
   describe "GET 'new'" do

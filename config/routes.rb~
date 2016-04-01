@@ -12,8 +12,10 @@ SampleApp::Application.routes.draw do
   match '/aide',   :to => 'pages#aide'
   match '/about',   :to => 'pages#about'
   match '/inscription',    :to => 'users#new'
+  match '/ok',    :to => 'users#ok'
   match '/cnx', :to => 'sessions#new'
   match '/deconnexion', :to => 'sessions#destroy'
+  match '/tel', :to => 'users#tel' # telecharger la liste des utilisateurs 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

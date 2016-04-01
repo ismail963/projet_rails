@@ -9,7 +9,7 @@
 		    <%= f.label :email, "Email" %>
 		    <%= f.text_field :email , :class => "input_text"%>
 		    <label>Date de naissance</label>
-		    <%= f.date_select :date_naissance, :order => [:day, :month, :year],  :use_month_names => ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre','Décembre'],  :start_year => 1950, :end_year => 2010 %>
+		    <%= f.date_select :date_naissance, :order => [:day, :month, :year],  :use_month_names => ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre','Décembre'],  :start_year => Time.now.year-100, :end_year => Time.now.year-18 %>
 		    <%= f.label :password, "Mot de passe" %>
 		    <%= f.password_field :password ,:class => "input_text" %>
 		    <%= f.label :password_confirmation, "Confirmation" %>

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def index
     @titre = "Tous les utilisateurs"
-    @users = User.paginate(:page => params[:page])
+    @users = User.paginate(:page => params[:page], :per_page => 10)
 
    
 
@@ -106,7 +106,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @titre = "Édition profil"
   end
-
+  def ok
+	
+  end
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
